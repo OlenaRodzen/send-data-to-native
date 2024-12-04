@@ -14,10 +14,13 @@ public class SendDataToNativePlugin: CAPPlugin, CAPBridgedPlugin {
     ]
     private let implementation = SendDataToNative()
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
-    }
+    @objc func sendDataToNative(_ call: CAPPluginCall) {
+            let data = call.getString("data") ?? ""
+                    // Handle the data in native code
+                    // For example, show an alert
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                                appDelegate.sendUserInfo(data)
+                            }
+                    call.resolve()
+        }
 }

@@ -1,3 +1,3 @@
 export interface SendDataToNativePlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  sendDataToNative(options: { value: string }): Promise<{ value: string }>;
 }
